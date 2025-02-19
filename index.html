@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Fun Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f8ff;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .fact-display {
+            margin: 20px 0;
+            font-size: 1.2em;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dog Fun Facts</h1>
+        <div id="fact-display" class="fact-display">Click the button to see a fun fact!</div>
+        <button id="new-fact-btn" class="btn">Show Random Fact</button>
+        <button id="share-twitter-btn" class="btn">Share on Twitter</button>
+    </div>
+    <script>
+        const facts = [
+            "Dogs have a sense of time and can predict future events, such as regular walk times.",
+            "A dog's sense of smell is at least 40 times better than a human's.",
+            "Dogs have three eyelids, including one to keep their eyes moist and protected.",
+            "The Basenji dog is known as the 'barkless dog' because it doesn't bark, but it can make other unique sounds.",
+            "Dogs can hear sounds at frequencies as high as 65,000 Hz, while humans can only hear up to 20,000 Hz.",
+            "The Greyhound is the fastest dog breed and can run up to 45 miles per hour.",
+            "Dogs have sweat glands only in their paw pads.",
+            "A dog's nose print is unique, much like a human's fingerprint.",
+            "The Labrador Retriever has been the most popular dog breed in the United States for over 30 years.",
+            "Dogs curl up in a ball when sleeping to protect their organs—a holdover from their wild ancestry."
+        ];
+
+        document.getElementById('new-fact-btn').addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            const factDisplay = document.getElementById('fact-display');
+            factDisplay.style.opacity = 0;
+            setTimeout(() => {
+                factDisplay.textContent = facts[randomIndex];
+                factDisplay.style.opacity = 1;
+            }, 500);
+        });
+
+        document.getElementById('share-twitter-btn').addEventListener('click', () => {
+            const fact = document.getElementById('fact-display').textContent;
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(fact)}`;
+            window.open(twitterUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
